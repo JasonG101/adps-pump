@@ -1,0 +1,11 @@
+{
+  "moonraker_url": "http://127.0.0.1:7125",
+  "max_ml": 20.0,
+  "timeout_s_per_ml": 5,
+  "presets": [
+    {"name": "Demo A", "ml": 1.0},
+    {"name": "Demo B", "ml": 5.0},
+    {"name": "Demo C", "ml": 10.0},
+    {"name": "Demo D", "ml": 20.0}
+  ]
+}

@@ -1,0 +1,30 @@
+[Unit]
+Description=ADPS pump touch UI
+StartLimitIntervalSec=0
+After=systemd-user-sessions.service plymouth-quit-wait.service
+ConditionPathExists=/dev/tty0
+Wants=dbus.socket systemd-logind.service
+After=dbus.socket systemd-logind.service
+After=moonraker.service
+Conflicts=KlipperScreen.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+User=group4-5
+SupplementaryGroups=klipperscreen
+WorkingDirectory=/home/group4-5/pumpui
+Environment="KS_XCLIENT=/home/group4-5/pumpui/run_app.sh" BACKEND=X
+ExecStart="/home/group4-5/KlipperScreen/scripts/KlipperScreen-start.sh"
+ExecStartPost=+chvt 7
+UtmpIdentifier=tty7
+UtmpMode=user
+PAMName=%u
+TTYPath=/dev/tty7
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+
+[Install]
+WantedBy=multi-user.target
